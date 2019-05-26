@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+
+
+    defaultConfig {
+        applicationId "app.saltforest.architecturesample"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+
+    implementation libs.kotlin
+    implementation libs.coroutines
+    implementation libs.coroutinesAndroid
+    implementation libs.dagger
+    implementation libs.daggerAndroid
+    implementation libs.daggerAndroidSupport
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.constraintlayout
+    implementation libs.lifecycle
+    implementation libs.ktx
+    implementation project(":app")
+    implementation project(":infra")
+
+    kapt compiler.dagger
+    kapt compiler.daggerAndroid
+    kapt compiler.lifecycle
+
+}

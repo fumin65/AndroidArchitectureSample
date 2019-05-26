@@ -1,0 +1,87 @@
+buildscript {
+    ext.kotlin_version = '1.3.31'
+
+    repositories {
+        google()
+        jcenter()
+
+    }
+
+    def versions = [:]
+    versions.kotlin = "1.3.31"
+    versions.spek = "2.0.5"
+    versions.rxjava = "2.2.7"
+    versions.rxkotlin = "2.3.0"
+    versions.coroutine = "1.1.1"
+    versions.mockk = "1.9.2"
+    versions.dagger = "2.21"
+    versions.lifecycle = "2.0.0"
+    versions.constraintlayout = "1.1.2"
+    versions.material = "1.0.0-rc01"
+    versions.appcompat = "1.0.0"
+    versions.ktx = "1.0.2"
+    versions.espresso = "3.1.0"
+    versions.retrofit = "2.5.0"
+    versions.junit5 = "5.4.2"
+    versions.room = "2.1.0-alpha04"
+
+    def libs = [:]
+    def compiler = [:]
+
+    libs.kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+    libs.rxjava = "io.reactivex.rxjava2:rxjava:${versions.rxjava}"
+    libs.rxkotlin = "io.reactivex.rxjava2:rxkotlin:${versions.rxkotlin}"
+    libs.coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutine}"
+    libs.coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutine}"
+    libs.dagger = "com.google.dagger:dagger:${versions.dagger}"
+    libs.daggerAndroid = "com.google.dagger:dagger-android:${versions.dagger}"
+    libs.daggerAndroidSupport = "com.google.dagger:dagger-android-support:${versions.dagger}"
+    libs.lifecycle = "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
+    libs.constraintlayout = "androidx.constraintlayout:constraintlayout:${versions.constraintlayout}"
+    libs.material = "com.google.android.material:material:${versions.material}"
+    libs.appcompat = "androidx.appcompat:appcompat:${versions.appcompat}"
+    libs.ktx = "androidx.core:core-ktx:${versions.ktx}"
+    libs.retrofit = "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    libs.room = "androidx.room:room-runtime:${versions.room}"
+    libs.roomCoroutines = "androidx.room:room-coroutines:${versions.room}"
+
+    compiler.dagger = "com.google.dagger:dagger-compiler:${versions.dagger}"
+    compiler.daggerAndroid = "com.google.dagger:dagger-android-processor:${versions.dagger}"
+    compiler.lifecycle = "androidx.lifecycle:lifecycle-compiler:${versions.lifecycle}"
+    compiler.room = "androidx.room:room-compiler:${versions.room}"
+
+    // for test
+    libs.spekDsl = "org.spekframework.spek2:spek-dsl-jvm:${versions.spek}"
+    libs.spekRunner = "org.spekframework.spek2:spek-runner-junit5:${versions.spek}"
+    libs.kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    libs.mockk = "io.mockk:mockk:${versions.mockk}"
+    libs.mockkAndroid = "io.mockk:mockk-android:${versions.mockk}"
+    libs.lifecycleTest = "androidx.arch.core:core-testing:${versions.lifecycle}"
+    libs.espresso = "androidx.test.espresso:espresso-core:${versions.espresso}"
+    libs.junitApi = "org.junit.jupiter:junit-jupiter-api:${versions.junit5}"
+    libs.junitEngine = "org.junit.jupiter:junit-jupiter-engine]${versions.junit5}"
+
+    rootProject.ext["libs"] = libs
+    rootProject.ext["compiler"] = compiler
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:3.4.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+        classpath "de.mannodermaus.gradle.plugins:android-junit5:1.3.1.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+
+
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
