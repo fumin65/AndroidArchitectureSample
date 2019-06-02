@@ -28,10 +28,10 @@ class Memo(
     var lastUpdatedAt: Date = lastUpdatedAt
         private set
 
-    fun changeTitleAndContent(title: String, content: String, updatedAt: Date) {
+    fun changeTitleAndContent(title: String, content: String) {
         this.title = title
         this.content = content
-        this.lastUpdatedAt = updatedAt
+        this.lastUpdatedAt = Date()
     }
 
 }
