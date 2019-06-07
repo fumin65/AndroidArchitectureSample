@@ -14,7 +14,7 @@ buildscript {
     versions.rxkotlin = "2.3.0"
     versions.coroutine = "1.1.1"
     versions.mockk = "1.9.2"
-    versions.dagger = "2.21"
+    versions.dagger = "2.23.1"
     versions.lifecycle = "2.0.0"
     versions.constraintlayout = "1.1.2"
     versions.material = "1.0.0-rc01"
@@ -63,7 +63,7 @@ buildscript {
     libs.lifecycleTest = "androidx.arch.core:core-testing:${versions.lifecycle}"
     libs.espresso = "androidx.test.espresso:espresso-core:${versions.espresso}"
     libs.junitApi = "org.junit.jupiter:junit-jupiter-api:${versions.junit5}"
-    libs.junitEngine = "org.junit.jupiter:junit-jupiter-engine]${versions.junit5}"
+    libs.junitEngine = "org.junit.jupiter:junit-jupiter-engine:${versions.junit5}"
 
     rootProject.ext["libs"] = libs
     rootProject.ext["compiler"] = compiler

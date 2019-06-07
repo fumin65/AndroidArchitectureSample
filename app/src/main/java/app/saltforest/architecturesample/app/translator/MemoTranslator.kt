@@ -1,10 +1,11 @@
 package app.saltforest.architecturesample.app.translator
 
 import app.saltforest.architecturesample.domain.model.memo.Memo
+import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class MemoTranslator {
+class MemoTranslator @Inject constructor() {
 
     fun translate(memo: Memo): app.saltforest.architecturesample.app.data.Memo {
         return app.saltforest.architecturesample.app.data.Memo(

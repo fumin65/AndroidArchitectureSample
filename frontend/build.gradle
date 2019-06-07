@@ -6,7 +6,6 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
 
-
     defaultConfig {
         applicationId "app.saltforest.architecturesample"
         minSdkVersion 21
@@ -45,7 +44,9 @@ dependencies {
     implementation libs.ktx
     implementation libs.ktxLiveData
     implementation libs.ktxViewModel
+    implementation libs.room
     implementation project(":app")
+    implementation project(":domain")
     implementation project(":infra")
 
     kapt compiler.dagger
