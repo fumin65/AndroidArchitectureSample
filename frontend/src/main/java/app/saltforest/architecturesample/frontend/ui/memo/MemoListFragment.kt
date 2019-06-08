@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -35,6 +36,7 @@ class MemoListFragment : DaggerFragment() {
         memoList.adapter = adapter
         memoList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         adapter.onMemoSelected = viewModel::select
+        (activity as? AppCompatActivity)?.supportActionBar?.setTitle(R.string.page_title_memo_list)
     }
 
     override fun onAttach(context: Context?) {

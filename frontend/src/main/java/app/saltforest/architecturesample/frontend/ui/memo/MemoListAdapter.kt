@@ -3,6 +3,7 @@ package app.saltforest.architecturesample.frontend.ui.memo
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import app.saltforest.architecturesample.R
 import app.saltforest.architecturesample.databinding.CellMemoBinding
@@ -14,8 +15,19 @@ class MemoListAdapter @Inject constructor() : RecyclerView.Adapter<MemoListAdapt
 
     var memos: List<MemoRowData>? = null
         set(value) {
-            field = value
-            notifyDataSetChanged()
+            value ?: run {
+                field = null
+                notifyDataSetChanged()
+                return
+            }
+            field?.also {
+                val result = DiffUtil.calculateDiff(DiffCallback(it, value))
+                field = value
+                result.dispatchUpdatesTo(this)
+            } ?: run {
+                field = value
+                notifyItemRangeInserted(0, value.size)
+            }
         }
 
     var onMemoSelected: ((Int) -> Unit)? = null
@@ -40,5 +52,21 @@ class MemoListAdapter @Inject constructor() : RecyclerView.Adapter<MemoListAdapt
     }
 
     class Holder(val binding: CellMemoBinding) : RecyclerView.ViewHolder(binding.root)
+
+    private class DiffCallback(private val old: List<MemoRowData>, private val new: List<MemoRowData>) :
+        DiffUtil.Callback() {
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return old[oldItemPosition].id == new[newItemPosition].id
+        }
+
+        override fun getOldListSize(): Int = old.size
+
+        override fun getNewListSize(): Int = new.size
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return old[oldItemPosition] == new[newItemPosition]
+        }
+    }
 
 }

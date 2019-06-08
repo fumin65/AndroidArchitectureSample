@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+>
+    <data>
+        <variable name="viewModel" type="app.saltforest.architecturesample.frontend.ui.memo.MemoViewModel"/>
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_margin="@dimen/default_margin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <EditText
+                android:text="@={viewModel.title}"
+                android:id="@+id/title"
+                android:hint="@string/memo_hint_title"
+                android:inputType="text"
+                android:singleLine="true"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/memo_detail_title_height"/>
+
+        <EditText
+                android:text="@={viewModel.content}"
+                android:id="@+id/content"
+                android:hint="@string/memo_hint_content"
+                android:singleLine="false"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+</layout>

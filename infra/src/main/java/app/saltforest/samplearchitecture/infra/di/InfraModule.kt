@@ -12,13 +12,11 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class InfraModule(
-    private val context: Context
-) {
+class InfraModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(): Database {
+    fun provideDatabase(context: Context): Database {
         return Room.databaseBuilder(context, Database::class.java, "app.db").build()
     }
 

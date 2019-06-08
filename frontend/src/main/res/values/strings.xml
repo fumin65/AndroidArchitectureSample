@@ -2,4 +2,9 @@
     <string name="app_name">frontend</string>
     <string name="action_settings">Settings</string>
     <string name="default_title">ノート</string>
+    <string name="memo_hint_title">タイトル</string>
+    <string name="memo_hint_content">内容</string>
+    <string name="page_title_memo_list">メモ帳</string>
+    <string name="page_title_memo_new">登録</string>
+    <string name="page_title_memo_edit">編集</string>
 </resources>

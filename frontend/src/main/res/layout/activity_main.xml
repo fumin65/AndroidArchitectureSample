@@ -23,12 +23,20 @@
 
     <include layout="@layout/content_main"/>
 
+    <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomBar"
+            android:layout_gravity="bottom"
+            android:backgroundTint="?attr/colorPrimary"
+            app:fabAlignmentMode="center"
+            style="@style/Widget.MaterialComponents.BottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addMessageBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
+            app:layout_anchor="@id/bottomBar"
             app:srcCompat="@mipmap/baseline_add_white_24"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

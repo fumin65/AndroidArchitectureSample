@@ -18,11 +18,7 @@ import javax.inject.Singleton
 )
 interface ApplicationComponent : AndroidInjector<MemoApp> {
 
-    @Component.Builder
-    abstract class Builder : AndroidInjector.Builder<MemoApp>() {
-
-        abstract fun infraModule(infraModule: InfraModule): Builder
-
-    }
+    @Component.Factory
+    interface Factory : AndroidInjector.Factory<MemoApp>
 
 }

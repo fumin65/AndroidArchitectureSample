@@ -16,7 +16,7 @@ class Memo(
     }
 
     var title: String = title
-        set(value) {
+        private set(value) {
             if (value.isEmpty()) {
                 throw IllegalArgumentException("title must not be empty")
             } else if (value.length > MAX_TITLE_LENGTH) {
