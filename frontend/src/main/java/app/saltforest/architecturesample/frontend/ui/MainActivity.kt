@@ -1,13 +1,11 @@
 package app.saltforest.architecturesample.frontend.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import app.saltforest.architecturesample.BuildConfig
 import app.saltforest.architecturesample.R
 import app.saltforest.architecturesample.frontend.ui.memo.MemoDetailFragment
 import app.saltforest.architecturesample.frontend.ui.memo.MemoListFragment
@@ -50,10 +48,7 @@ class MainActivity : DaggerAppCompatActivity() {
         }
 
         viewModel.selectedMemo.observe(this, Observer {
-            it?.also { memo ->
-                if (BuildConfig.DEBUG) {
-                    Log.d("test", "selected!! : $memo")
-                }
+            it?.also {
                 showDetailFragment()
                 supportActionBar?.setTitle(R.string.page_title_memo_edit)
             }
