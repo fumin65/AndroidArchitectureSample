@@ -16,7 +16,7 @@ buildscript {
     versions.mockk = "1.9.2"
     versions.dagger = "2.23.1"
     versions.lifecycle = "2.0.0"
-    versions.constraintlayout = "1.1.2"
+    versions.constraintlayout = "2.0.0-alpha3"
     versions.material = "1.0.0-rc01"
     versions.appcompat = "1.0.0"
     versions.ktx = "1.0.2"
