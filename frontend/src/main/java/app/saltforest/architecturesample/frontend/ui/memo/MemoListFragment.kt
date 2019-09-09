@@ -28,7 +28,11 @@ class MemoListFragment : DaggerFragment() {
             .get(MemoViewModel::class.java)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_memo_list, container, false)
     }
 
@@ -39,7 +43,7 @@ class MemoListFragment : DaggerFragment() {
         (activity as? AppCompatActivity)?.supportActionBar?.setTitle(R.string.page_title_memo_list)
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         viewModel.memos.observe(this, Observer { adapter.memos = it })
     }

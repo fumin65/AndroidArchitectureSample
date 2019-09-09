@@ -4,4 +4,5 @@
     <dimen name="list_updated_at">14sp</dimen>
     <dimen name="memo_detail_title_height">60dp</dimen>
     <dimen name="default_margin">8dp</dimen>
+    <dimen name="list_reveral_height">300dp</dimen>
 </resources>

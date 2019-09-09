@@ -15,11 +15,12 @@ class MemoListAdapter @Inject constructor() : RecyclerView.Adapter<MemoListAdapt
 
     var memos: List<MemoRowData>? = null
         set(value) {
-            value ?: run {
+            if (value == null) {
                 field = null
                 notifyDataSetChanged()
                 return
             }
+
             field?.also {
                 val result = DiffUtil.calculateDiff(DiffCallback(it, value))
                 field = value
@@ -47,13 +48,18 @@ class MemoListAdapter @Inject constructor() : RecyclerView.Adapter<MemoListAdapt
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.binding.apply {
             memo = memos?.get(position)
-            memoCell.setOnClickListener { onMemoSelected?.invoke(position) }
+            memoCell.setOnClickListener {
+                memos?.indexOf(memo)?.let { index -> onMemoSelected?.invoke(index) }
+            }
         }
     }
 
     class Holder(val binding: CellMemoBinding) : RecyclerView.ViewHolder(binding.root)
 
-    private class DiffCallback(private val old: List<MemoRowData>, private val new: List<MemoRowData>) :
+    private class DiffCallback(
+        private val old: List<MemoRowData>,
+        private val new: List<MemoRowData>
+    ) :
         DiffUtil.Callback() {
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
