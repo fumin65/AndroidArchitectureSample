@@ -2,10 +2,7 @@ package app.saltforest.architecturesample.frontend.ui.memo
 
 import android.content.Context
 import androidx.databinding.ObservableField
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import app.saltforest.architecturesample.R
 import app.saltforest.architecturesample.app.data.Memo
 import app.saltforest.architecturesample.app.usecase.CreateMemoUseCase
@@ -13,6 +10,7 @@ import app.saltforest.architecturesample.app.usecase.FetchMemoUseCase
 import app.saltforest.architecturesample.app.usecase.FetchMemosUseCase
 import app.saltforest.architecturesample.app.usecase.UpdateMemoUseCase
 import app.saltforest.architecturesample.frontend.di.scope.ActivityScope
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,14 +27,16 @@ class MemoViewModel @Inject constructor(
     private val _selectedMemo = MutableLiveData<Memo>()
     val selectedMemo: LiveData<Memo?> = _selectedMemo
 
-    val title = ObservableField<String>("")
-    val content = ObservableField<String>("")
+    val title = ObservableField("")
+    val content = ObservableField("")
 
-    private val _memos = MutableLiveData<List<MemoRowData>>()
-    val memos: LiveData<List<MemoRowData>> = _memos
-
-    init {
-        loadMemos()
+    val memos: LiveData<List<MemoRowData>> = liveData {
+        fetchMemosUseCase.handle().collect { memos ->
+            val sortedMemos = memos.sortedBy { it.lastUpdatedAt }
+                .reversed()
+                .map { memoTranslator.translate(it) }
+            emit(sortedMemos)
+        }
     }
 
     fun select(pos: Int) {
@@ -72,16 +72,6 @@ class MemoViewModel @Inject constructor(
             createMemoUseCase.handle(newTitle, newContent)
         }
 
-        loadMemos()
     }
 
-    private fun loadMemos() {
-        viewModelScope.launch {
-            val memos = fetchMemosUseCase.handle()
-                .sortedBy { it.lastUpdatedAt }
-                .reversed()
-                .map { memoTranslator.translate(it) }
-            _memos.value = memos
-        }
-    }
 }

@@ -4,6 +4,8 @@ import app.saltforest.architecturesample.domain.model.memo.Memo
 import app.saltforest.architecturesample.domain.model.memo.MemoId
 import app.saltforest.architecturesample.domain.model.memo.MemoRepository
 import app.saltforest.samplearchitecture.infra.persistence.dao.MemoDao
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import java.util.*
 
 class RoomMemoRepository constructor(
@@ -19,8 +21,8 @@ class RoomMemoRepository constructor(
         return dao.memo(memoId.value).let { translator.translate(it) }
     }
 
-    override suspend fun memos(): List<Memo> {
-        return dao.allMemos().map { translator.translate(it) }
+    override suspend fun memos(): Flow<List<Memo>> {
+        return dao.allMemos().map { memos -> memos.map { memo -> translator.translate(memo) } }
     }
 
 }

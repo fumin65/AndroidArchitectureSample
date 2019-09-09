@@ -52,5 +52,6 @@ dependencies {
     kapt compiler.dagger
     kapt compiler.daggerAndroid
     kapt compiler.lifecycle
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
 }

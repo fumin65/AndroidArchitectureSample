@@ -7,17 +7,29 @@
         android:layout_height="match_parent"
         tools:context="app.saltforest.architecturesample.frontend.ui.MainActivity">
 
+    <LinearLayout
+            android:background="?attr/colorPrimary"
+            android:paddingTop="?attr/actionBarSize"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    </LinearLayout>
+
     <com.google.android.material.appbar.AppBarLayout
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:elevation="0dp"
             android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+                android:elevation="0dp"
                 android:layout_width="match_parent"
+                app:navigationIcon="@drawable/ic_launcher_foreground"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -26,7 +38,7 @@
     <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomBar"
             android:layout_gravity="bottom"
-            android:backgroundTint="?attr/colorPrimary"
+            android:backgroundTint="@color/colorPrimaryDark"
             app:fabAlignmentMode="center"
             style="@style/Widget.MaterialComponents.BottomAppBar"
             android:layout_width="match_parent"
